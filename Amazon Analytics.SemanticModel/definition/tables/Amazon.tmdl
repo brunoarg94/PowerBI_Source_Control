@@ -75,8 +75,11 @@ table Amazon
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\PBI_Source_Control\PowerBI_Source_Control\Amazon.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				
+				    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/NewWorkspace/Lakehouse1.Lakehouse/Files/Amazon.csv"),
+				    #"https://onelake dfs fabric microsoft com/NewWorkspace/Lakehouse1 Lakehouse/Files/_Amazon csv" = Source{[#"Folder Path"="https://onelake.dfs.fabric.microsoft.com/NewWorkspace/Lakehouse1.Lakehouse/Files/",Name="Amazon.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"https://onelake dfs fabric microsoft com/NewWorkspace/Lakehouse1 Lakehouse/Files/_Amazon csv",[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Open", type number}, {"High", type number}, {"Low", type number}, {"Close", type number}, {"Adj Close", type number}, {"Volume", Int64.Type}})
 				in
 				    #"Changed Type"
