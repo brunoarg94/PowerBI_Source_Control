@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
   "name": "0c7e8f30bd492e5efe4b",
   "position": {
-    "x": 63.41463414634147,
-    "y": 112.19512195121952,
+    "x": 16.976127320954909,
+    "y": 43.006189213085769,
     "z": 0,
-    "height": 445.85365853658539,
-    "width": 1102.439024390244,
+    "height": 365.552608311229,
+    "width": 1212.0954907161804,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -44,14 +44,14 @@
                           "Entity": "Amazon"
                         }
                       },
-                      "Property": "High"
+                      "Property": "Close"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Amazon.High)",
-              "nativeQueryRef": "Sum of High"
+              "queryRef": "Sum(Amazon.Close)",
+              "nativeQueryRef": "Sum of Close"
             }
           ]
         }
@@ -74,6 +74,51 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Amazon.Close)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Close Pricing'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }
